@@ -4,6 +4,9 @@
 ### AndroidStudio ###
 # Covers files to be ignored for android development using Android Studio.
 
+# Other MISC files  --  I do not think this line took.
+ _Back.gitignore
+
 # Built application files
 *.apk
 *.ap_
