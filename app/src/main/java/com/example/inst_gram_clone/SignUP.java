@@ -1,5 +1,6 @@
 package com.example.inst_gram_clone;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -29,6 +30,7 @@ public class SignUP extends AppCompatActivity implements View.OnClickListener {
     private TextView txtGetData;
     private Button btnGetAll;
     String strGetAll;
+    private Button btnNextActivity;
 
     private static final String TAG = "SignUP";
 
@@ -45,6 +47,7 @@ public class SignUP extends AppCompatActivity implements View.OnClickListener {
         editTextPT = findViewById(R.id.editText5);
         txtGetData = findViewById(R.id.txtGetData);
         btnGetAll = findViewById(R.id.btnGetAll);
+        btnNextActivity = findViewById(R.id.btnNextActivity);
 
         btnClicked.setOnClickListener(SignUP.this);
 
@@ -71,6 +74,7 @@ public class SignUP extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 ParseQuery<ParseObject> queryAll = ParseQuery.getQuery("KickBoxer");
+                queryAll.whereGreaterThan("punch_strength",70);
                 queryAll.findInBackground(new FindCallback<ParseObject>() {
                     @Override
                     public void done(List<ParseObject> objects, ParseException e) {
@@ -87,7 +91,14 @@ public class SignUP extends AppCompatActivity implements View.OnClickListener {
                 });
             }
         });
-        
+
+        btnNextActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignUP.this, SignUPLoginActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
